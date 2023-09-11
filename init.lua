@@ -564,6 +564,10 @@ vim.api.nvim_set_keymap('n', '<leader>d', ':bdelete<CR>', { noremap = true, sile
 -- custom theme
 vim.cmd [[highlight NeoTreeNormal ctermbg=none guibg=none]]
 vim.cmd [[highlight NeoTreeEndOfBuffer ctermbg=none guibg=none]]
+vim.cmd [[highlight NeoTreeNormal ctermbg=none guibg=none]]
+vim.cmd [[highlight NeoTreeNormalNC ctermbg=none guibg=none]]
+vim.cmd [[highlight NeoTreeFloatNormal ctermbg=none guibg=none]]
+
 -- keymap
 vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>o', ':Neotree filesystem<CR>', { noremap = true, silent = true })
