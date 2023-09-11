@@ -553,10 +553,13 @@ vim.api.nvim_exec([[
 ]], false)
 
 -- change buffers map setting
-vim.api.nvim_set_keymap('n', '<C-j>', ':bprev<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':bnext<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '[b', ':bprev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']b', ':bnext<CR>', { noremap = true, silent = true })
 -- delete buffers map setting
 vim.api.nvim_set_keymap('n', '<leader>d', ':bdelete<CR>', { noremap = true, silent = true })
+
+-- open web browser for current file
+vim.api.nvim_set_keymap('n', '<leader>ow', ':!open %<CR>', { noremap = true, silent = true })
 
 -- Plugins stting
 
