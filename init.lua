@@ -537,3 +537,20 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- hira62 keymaps
+-- Prevent comments from being inherited when line breaks
+vim.api.nvim_exec([[
+  autocmd BufEnter * setlocal formatoptions-=cro
+]], false)
+
+-- change buffers map setting
+vim.api.nvim_set_keymap('n', '<C-j>', ':bprev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-k>', ':bnext<CR>', { noremap = true, silent = true })
+-- delete buffers map setting
+vim.api.nvim_set_keymap('n', '<leader>d', ':bdelete<CR>', { noremap = true, silent = true })
+
+-- Plugins stting
+-- lua/custom/plugins/filetree.lua
+vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>o', ':Neotree filesystem<CR>', { noremap = true, silent = true })
