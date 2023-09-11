@@ -148,6 +148,14 @@ require('lazy').setup({
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'onedark'
+      -- custom theme
+      vim.cmd [[highlight Normal ctermbg=none guibg=none]]
+      vim.cmd [[highlight EndOfBuffer ctermbg=none guibg=none]]
+      vim.cmd [[highlight LineNr ctermbg=none guibg=none]]
+      vim.cmd [[highlight CursorLineNr ctermbg=none guibg=none]]
+      vim.cmd [[highlight CursorLine ctermbg=none guibg=none]]
+      vim.cmd [[highlight CursorColumn ctermbg=none guibg=none]]
+      vim.cmd [[highlight SignColumn ctermbg=none guibg=none]]
     end,
   },
 
@@ -551,6 +559,11 @@ vim.api.nvim_set_keymap('n', '<C-k>', ':bnext<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>d', ':bdelete<CR>', { noremap = true, silent = true })
 
 -- Plugins stting
+
 -- lua/custom/plugins/filetree.lua
+-- custom theme
+vim.cmd [[highlight NeoTreeNormal ctermbg=none guibg=none]]
+vim.cmd [[highlight NeoTreeEndOfBuffer ctermbg=none guibg=none]]
+-- keymap
 vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>o', ':Neotree filesystem<CR>', { noremap = true, silent = true })
