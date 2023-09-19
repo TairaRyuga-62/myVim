@@ -13,6 +13,9 @@ return {
     require('neo-tree').setup({
       filesystem = {
         filtered_items = {
+          bind_to_cwd = false, -- when true, it will bind the cwd to the root of the file tree
+          follow_current_file = {enabled = true }, -- when true, the file tree will automatically change cwd based on the file in the current buffer
+          use_libuv_file_watcher = true, -- when true, it will use the file watcher provided by nvim
           visible = false, -- when true, they will just be displayed differently than normal items
           hide_dotfiles = true,
           hide_gitignored = true,
@@ -36,7 +39,7 @@ return {
             --".null-ls_*",
           },
         },
-      }
+      },
     })
   end,
 }
