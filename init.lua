@@ -86,7 +86,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -110,7 +110,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -128,16 +128,16 @@ require('lazy').setup({
 
         -- don't override the built-in and fugitive keymaps
         local gs = package.loaded.gitsigns
-        vim.keymap.set({'n', 'v'}, ']c', function()
+        vim.keymap.set({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then return ']c' end
           vim.schedule(function() gs.next_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to next hunk"})
-        vim.keymap.set({'n', 'v'}, '[c', function()
+        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
+        vim.keymap.set({ 'n', 'v' }, '[c', function()
           if vim.wo.diff then return '[c' end
           vim.schedule(function() gs.prev_hunk() end)
           return '<Ignore>'
-        end, {expr=true, buffer = bufnr, desc = "Jump to previous hunk"})
+        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
       end,
     },
   },
@@ -558,7 +558,7 @@ vim.api.nvim_exec([[
 vim.api.nvim_set_keymap('n', '[b', ':BufferPrevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', ']b', ':BufferNext<CR>', { noremap = true, silent = true })
 -- delete buffers map setting
-vim.api.nvim_set_keymap('n', '<leader>d', ':bdelete<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>bd', ':BufferClose<CR>', { noremap = true, silent = true })
 
 -- open web browser for current file
 vim.api.nvim_set_keymap('n', '<leader>ow', ':!open %<CR>', { noremap = true, silent = true })
@@ -583,3 +583,34 @@ vim.api.nvim_set_keymap('n', '<leader>gq', ':DiffviewClose<CR>', { noremap = tru
 -- git
 vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', { noremap = true, silent = true })
 
+-- lsp
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    -- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, opts)
+    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    -- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})
