@@ -582,6 +582,8 @@ vim.api.nvim_set_keymap('n', '<leader>gq', ':DiffviewClose<CR>', { noremap = tru
 
 -- git
 vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', { noremap = true, silent = true })
+-- lazygit
+vim.api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
 
 -- lsp
 -- Use LspAttach autocommand to only map the following keys
