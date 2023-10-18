@@ -585,6 +585,9 @@ vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', { noremap = true, s
 -- lazygit
 vim.api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
 
+-- markdown-preview
+vim.api.nvim_set_keymap('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
+
 -- lsp
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
