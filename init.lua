@@ -586,7 +586,13 @@ vim.api.nvim_set_keymap('n', '<leader>gb', ':Git blame<CR>', { noremap = true, s
 vim.api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
 
 -- markdown-preview
-vim.api.nvim_set_keymap('n', '<leader>mp', ':MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>om', ':MarkdownPreviewToggle<CR>', { noremap = true, silent = true })
+
+-- getFilePath
+-- faile_name
+vim.api.nvim_set_keymap('n', '<leader>oc', [[:let @+ = fnamemodify(expand('%'), ':t')<CR>]], { noremap = true, silent = true })
+-- faile_path
+vim.api.nvim_set_keymap('n', '<leader>oC', [[:let @+ = expand('%:p')<CR>]], { noremap = true, silent = true })
 
 -- lsp
 -- Use LspAttach autocommand to only map the following keys
